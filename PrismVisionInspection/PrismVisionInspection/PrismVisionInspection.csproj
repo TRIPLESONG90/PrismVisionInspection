@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrismVisionInspection.Core\PrismVisionInspection.Core.csproj" />
+    <ProjectReference Include="..\Modules\PrismVisionInspection.Modules.ModuleName\PrismVisionInspection.Modules.ModuleName.csproj" />
+    <ProjectReference Include="..\Services\PrismVisionInspection.Services.Interfaces\PrismVisionInspection.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\Services\PrismVisionInspection.Services\PrismVisionInspection.Services.csproj" />
+  </ItemGroup>
+</Project>

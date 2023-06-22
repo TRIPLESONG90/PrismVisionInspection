@@ -8,8 +8,9 @@
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PrismVisionInspection.Modules.History\PrismVisionInspection.Modules.History.csproj" />
+    <ProjectReference Include="..\..\PrismVisionInspection.Modules.Inspection\PrismVisionInspection.Modules.Inspection.csproj" />
     <ProjectReference Include="..\PrismVisionInspection.Core\PrismVisionInspection.Core.csproj" />
-    <ProjectReference Include="..\Modules\PrismVisionInspection.Modules.ModuleName\PrismVisionInspection.Modules.ModuleName.csproj" />
     <ProjectReference Include="..\Services\PrismVisionInspection.Services.Interfaces\PrismVisionInspection.Services.Interfaces.csproj" />
     <ProjectReference Include="..\Services\PrismVisionInspection.Services\PrismVisionInspection.Services.csproj" />
   </ItemGroup>

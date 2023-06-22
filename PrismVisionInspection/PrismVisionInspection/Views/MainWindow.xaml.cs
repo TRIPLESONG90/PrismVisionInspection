@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Prism.Regions;
+using PrismVisionInspection.Core;
+using System.Windows;
 
 namespace PrismVisionInspection.Views
 {
@@ -7,9 +9,13 @@ namespace PrismVisionInspection.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(IRegionManager regionManager)
         {
             InitializeComponent();
+            this.Loaded += (s, e) =>
+            {
+                regionManager.RequestNavigate(RegionNames.ContentRegion, "Inspection");
+            };
         }
     }
 }

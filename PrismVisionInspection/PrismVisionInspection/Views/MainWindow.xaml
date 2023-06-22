@@ -6,6 +6,16 @@
         xmlns:core="clr-namespace:PrismVisionInspection.Core;assembly=PrismVisionInspection.Core"
         Title="{Binding Title}" Height="350" Width="525" >
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Content="검사" Width="100" Command="{Binding ChangePageCommand}" CommandParameter="Inspection"/>
+            <Button Content="기록" Width="100" Command="{Binding ChangePageCommand}" CommandParameter="History"/>
+        </StackPanel>
+        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" />
+        <TextBlock Text="{Binding CameraStatus}" Grid.Row="2"/>
     </Grid>
 </Window>

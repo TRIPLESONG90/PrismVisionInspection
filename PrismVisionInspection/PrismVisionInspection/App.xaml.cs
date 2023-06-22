@@ -1,6 +1,7 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
-using PrismVisionInspection.Modules.ModuleName;
+using PrismVisionInspection.Modules.History;
+using PrismVisionInspection.Modules.Inspection;
 using PrismVisionInspection.Services;
 using PrismVisionInspection.Services.Interfaces;
 using PrismVisionInspection.Views;
@@ -21,11 +22,16 @@ namespace PrismVisionInspection
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IMessageService, MessageService>();
+            containerRegistry.RegisterSingleton<VirtualCamera>(sp =>
+            {
+                return new VirtualCamera(@"C:\Users\exper\Pictures\Screenshots");
+            });
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            moduleCatalog.AddModule<ModuleNameModule>();
+            moduleCatalog.AddModule<HistoryModule>();
+            moduleCatalog.AddModule<InspectionModule>();
         }
     }
 }

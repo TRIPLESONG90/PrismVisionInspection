@@ -20,8 +20,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Modules\PrismVisionInspection.Modules.ModuleName\PrismVisionInspection.Modules.ModuleName.csproj" />
-  </ItemGroup>
-
 </Project>

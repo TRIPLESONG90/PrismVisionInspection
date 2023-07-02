@@ -41,7 +41,7 @@ namespace PrismVisionInspection.Modules.Inspection.ViewModels
         public DelegateCommand StopCommand { get; set; }
         public DelegateCommand TriggerCommand { get; set; }
 
-        public InspectionViewModel(VirtualCamera camera)
+        public InspectionViewModel(ICamera camera, ObjectDetection detection)
         {
             StartCommand = new(() =>
             {
@@ -62,11 +62,10 @@ namespace PrismVisionInspection.Modules.Inspection.ViewModels
 
             camera.FrameGrabbedEvent += (s, e) =>
             {
-                var gray = e.CvtColor(ColorConversionCodes.BGR2GRAY);
-                var threshold = gray.Threshold(128, 255, ThresholdTypes.Binary);
-                Image = BitmapSourceConverter.ToBitmapSource(threshold);
+                var rects = detection.Detect(e);
+                detection.DrawRects(ref e, rects);
+                Image = BitmapSourceConverter.ToBitmapSource(e);
             };
-            
         }
     }
 }

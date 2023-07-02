@@ -5,6 +5,7 @@ using PrismVisionInspection.Modules.Inspection;
 using PrismVisionInspection.Services;
 using PrismVisionInspection.Services.Interfaces;
 using PrismVisionInspection.Views;
+using System.Net.Http;
 using System.Windows;
 
 namespace PrismVisionInspection
@@ -22,10 +23,18 @@ namespace PrismVisionInspection
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IMessageService, MessageService>();
-            containerRegistry.RegisterSingleton<VirtualCamera>(sp =>
+            containerRegistry.RegisterSingleton<ICamera>(sp =>
             {
-                return new VirtualCamera(@"C:\Users\exper\Pictures\Screenshots");
+                return new WebCam();
             });
+            containerRegistry.RegisterSingleton<HttpClient>(sp =>
+            {
+                return new HttpClient()
+                {
+                    BaseAddress = new System.Uri("http://triplesong90.iptime.org:800")
+                };
+            });
+            containerRegistry.RegisterSingleton<ObjectDetection>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

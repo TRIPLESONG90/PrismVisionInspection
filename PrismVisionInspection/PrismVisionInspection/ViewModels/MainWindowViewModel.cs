@@ -23,7 +23,7 @@ namespace PrismVisionInspection.ViewModels
             set => SetProperty(ref _cameraStatus, value);
         }
         public DelegateCommand<object> ChangePageCommand { get; set; }
-        public MainWindowViewModel(IRegionManager regionManager, VirtualCamera camera)
+        public MainWindowViewModel(IRegionManager regionManager, ICamera camera)
         {
             ChangePageCommand = new((arg) =>
             {

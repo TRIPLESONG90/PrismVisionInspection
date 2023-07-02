@@ -8,18 +8,31 @@ using OpenCvSharp;
 
 namespace PrismVisionInspection.Services
 {
-    public class VirtualCamera
+    public interface ICamera
+    {
+        public event EventHandler ConnectedEvent;
+        public event EventHandler DisconnectedEvent;
+        public event EventHandler GrabStartedEvent;
+        public event EventHandler GrabStoppedEvent;
+        public event EventHandler<Mat> FrameGrabbedEvent;
+
+        public void Connect();
+        public void StartGrab();
+        public void StopGrab();
+        public void Disconnect();
+        public void SWTrigger();
+    }
+    public class VirtualCamera : ICamera
     {
         List<string> _files;
         public event EventHandler ConnectedEvent;
         public event EventHandler DisconnectedEvent;
         public event EventHandler GrabStartedEvent;
         public event EventHandler GrabStoppedEvent;
-
         public event EventHandler<Mat> FrameGrabbedEvent;
         public VirtualCamera(string dirPath)
         {
-            _files = Directory.GetFiles(dirPath).ToList().Where(x=>x.Contains(".png")).ToList();
+            _files = Directory.GetFiles(dirPath).ToList().Where(x=>x.Contains(".jpg")).ToList();
         }
 
         public void Connect()
